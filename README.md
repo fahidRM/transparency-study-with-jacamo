@@ -5,8 +5,8 @@ This repository is a basic setup to get started with a modified jacamo environme
 
 ## Getting Started
 
-- Download the folders `jacamo_files` and `project-libs`from this repository. 
-- Setup `jacamo` on your computer using the content of the `jacamo_files` folder. This can be done by downloading the folder contents and then navigating to the subdirectory `build\libs` and running the file `jacamo-1.0.jar` and clicking on the `save configuration and exit` button.
+- Download the folders `jacamo` and `project-libs`from this repository. 
+- Setup `jacamo` on your computer using the content of the `jacamo` folder. This can be done by downloading the folder contents and then navigating to the subdirectory `build\libs` and running the file `jacamo-1.0.jar` and clicking on the `save configuration and exit` button.
 - Restart eclipse IDE.
 - Include `stag.jar` and the respective `jason-xxxx-mod.jar` from the `project-libs` directory in your project as dependencies.
 - This codebase was intended to be used along with the transparency tool (see: https://github.com/fahidRM/agent-transparency-tool).
@@ -16,7 +16,7 @@ This repository is a basic setup to get started with a modified jacamo environme
 
 ## Using the Transparency tool with your own project
 
-- After updating your project's dependedncy to include the jar files (cotnained `project-libs` directory) and setting up the version of jacamo contained in this repository  (cotnained `jacamo-files` directory)
+- After updating your project's dependedncy to include the jar files (cotnained `project-libs` directory) and setting up the version of jacamo contained in this repository  (cotnained `jacamo` directory)
 - Edit your `jcm` file to make use of the contained `ag-arch` as shown below;
     
       Supposing your jcm file looks like this...

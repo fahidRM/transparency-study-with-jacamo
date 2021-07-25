@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class JaCamoProjectTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class JaCamoProjectTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/default-package.html">default-package</a> &gt; JaCamoProjectTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">4</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.092s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">testParse1</td>
+<td class="success">0.016s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testParse2</td>
+<td class="success">0.061s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testParseInst</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testToString</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>/*
+    JaCaMo Project
+
+    -- created on June 12, 2021
+*/
+
+mas test_inst {
+
+   workspace w1 {
+
+   }
+
+   workspace w5 {
+
+   }
+
+   institution i1 : x.sai {
+      workspaces: w1, w5
+   }
+
+   organisation o1 : o1.xml {
+
+
+
+   }
+
+   class-path: lib
+   asl-path:   file:.
+               file:src/agt
+               file:src/agt/inc
+}
+/*
+    JaCaMo Project
+
+    -- created on June 12, 2021
+*/
+
+mas test_1 {
+
+   agent bob {
+      instances: 3
+      beliefs: product(&quot;banana&quot;,&quot;this is a condition&quot;,15000)
+               rft(gui)
+      goals:  start
+              go(home)
+
+      // join: o1, w1, w5
+      // focus: w1.mycounter, w5.counter_for_all
+      // roles: role1 in o1.myfirstgroup, role2 in o1.myfirstgroup
+   }
+
+   agent alice : file:bob.asl {
+      debug: mindinspector(file(cycle,xml,log))         // app domain argument 
+      verbose: 0         // app domain argument 
+
+      // join: o1, w1, w2, w5
+      // focus: w2.acounter, w5.counter_for_all
+      // roles: role3 in o1.g4
+   }
+
+   agent marcos : file:bob.asl {
+
+      // join: w5
+      // focus: w5.rcounter, w5.counter_for_all
+   }
+
+   agent carlos : file:bob.asl {
+
+      // join: w5
+      // focus: w5.counter_for_all
+   }
+
+   agent olivier {
+
+      // join: w2, w5
+      // focus: w2.acounter, w5.counter_for_all
+   }
+
+   workspace w1 {
+      artifact mycounter: test.Counter(&quot;a counter&quot;,10)
+      artifact c1: cartago.tools.Clock
+      agents: bob, alice
+   }
+
+   workspace w2 {
+      artifact acounter: test.Counter(&quot;another counter&quot;,100)
+      agents: alice, olivier
+   }
+
+   workspace w5 {
+      artifact rcounter: test.Counter(&quot;remote counter&quot;,100)
+      artifact counter_for_all: test.Counter(&quot;universal counter&quot;,100)
+      agents: bob, alice, marcos, carlos, olivier
+   }
+
+   organisation o1 : o1-test.xml {
+      agents: bob, alice
+      group myfirstgroup: papergr {
+         debug: inspector_gui(on)
+         responsible-for: s1         players: bob role1
+                  bob role2
+      }
+      group mysecondgroup: papergr {
+         owner: bob
+
+      group g2: at {
+
+      group g4: t2 {
+         owner: alice
+         players: alice role3
+      }
+      }
+
+      group g3: at {
+      }
+      }
+
+      scheme s1: attack {
+         debug: inspector_gui(on)
+      }
+      scheme s2: attack {
+         somepar: 45
+      }
+
+   }
+
+   class-path: bin/classes
+               ../../../bin/classes
+   asl-path:   file:../../../src/templates
+   node n10@10.1.1.17:30
+   platform:     cartago(infrastructure)
+}
+/*
+    JaCaMo Project
+
+    -- created on June 12, 2021
+*/
+
+mas tt {
+
+   agent bob {
+      instances: 3
+      beliefs: product(&quot;banana&quot;,&quot;this is a condition&quot;,15000)
+               rft(gui)
+      goals:  start
+              go(home)
+
+      // join: o1, w1, w5
+      // focus: w1.mycounter, w5.counter_for_all
+      // roles: role1 in o1.myfirstgroup, role2 in o1.myfirstgroup
+   }
+
+   agent alice : file:bob.asl {
+      debug: mindinspector(file(cycle,xml,log))         // app domain argument 
+      verbose: 0         // app domain argument 
+
+      // join: o1, w1, w2, w5
+      // focus: w2.acounter, w5.counter_for_all
+      // roles: role3 in o1.g4
+   }
+
+   agent marcos : file:bob.asl {
+
+      // join: w5
+      // focus: w5.rcounter, w5.counter_for_all
+   }
+
+   agent carlos : file:bob.asl {
+
+      // join: w5
+      // focus: w5.counter_for_all
+   }
+
+   agent olivier {
+
+      // join: w2, w5
+      // focus: w2.acounter, w5.counter_for_all
+   }
+
+   agent b : file:/t/files/x.asl {
+      instances: 5
+      ag-class: mypkg.MyAgent
+      ag-bb-class: my.bb
+      ag-arch: mypkg.Arch1
+               mypkg.Arch2
+      osarg: &quot;the course&quot;         // app domain argument 
+      blabla: 3         // app domain argument 
+      beliefs: product(&quot;banana&quot;,&quot;this is a condition&quot;,15000)
+               rft(gui)
+      osfile: &quot;a/x.xml&quot;         // app domain argument 
+      events: discard         // app domain argument 
+      goals:  start
+              go(home)
+
+      // join: anotherw, kk, ww2, yy
+      // focus: ww2.c1, kk.c2, yy.c3
+   }
+
+   agent alice {
+   }
+
+   agent jorge {
+   }
+
+   workspace w1 {
+      artifact mycounter: test.Counter(&quot;a counter&quot;,10)
+      artifact c1: cartago.tools.Clock
+      agents: bob, alice
+   }
+
+   workspace w2 {
+      artifact acounter: test.Counter(&quot;another counter&quot;,100)
+      agents: alice, olivier
+   }
+
+   workspace w5 {
+      artifact rcounter: test.Counter(&quot;remote counter&quot;,100)
+      artifact counter_for_all: test.Counter(&quot;universal counter&quot;,100)
+      agents: bob, alice, marcos, carlos, olivier
+   }
+
+   organisation o1 : o1-test.xml {
+      agents: bob, alice
+      group myfirstgroup: papergr {
+         debug: inspector_gui(on)
+         responsible-for: s1         players: bob role1
+                  bob role2
+      }
+      group mysecondgroup: papergr {
+         owner: bob
+
+      group g2: at {
+
+      group g4: t2 {
+         owner: alice
+         players: alice role3
+      }
+      }
+
+      group g3: at {
+      }
+      }
+
+      scheme s1: attack {
+         debug: inspector_gui(on)
+      }
+      scheme s2: attack {
+         somepar: 45
+      }
+
+   }
+
+   class-path: lib
+               bin/classes
+               ../../../bin/classes
+               a
+               /opt/x.jar
+               ../lib/opt/x.jar
+   asl-path:   file:.
+               file:src/agt
+               file:src/agt/inc
+               file:../../../src/templates
+               file:./a2
+               file:/opt/x2.jar
+               file:./src/agt
+   node n10@10.1.1.17:30
+   node n3@x.bb.com.it
+   platform:     centralised(pool, 4)
+                 cartago(infrastructure)
+}
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 6.8.1</a> at 12 Jun 2021, 15:23:16</p>
+</div>
+</div>
+</body>
+</html>

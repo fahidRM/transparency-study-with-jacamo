@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: jacamo.util.ConfigGUI
+Specification-Title: JaCaMo framework
+Specification-Version: 1.0
+Implementation-Version: Sat Jun 12 15:22:06 PDT 2021
+Class-Path: jason-2.6.2.jar
+

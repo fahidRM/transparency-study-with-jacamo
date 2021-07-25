@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="JaCamoProjectTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-06-12T22:23:14" hostname="fahids-Mac.local" time="0.094">
+  <properties/>
+  <testcase name="testParseInst" classname="JaCamoProjectTest" time="0.006"/>
+  <testcase name="testToString" classname="JaCamoProjectTest" time="0.009"/>
+  <testcase name="testParse1" classname="JaCamoProjectTest" time="0.016"/>
+  <testcase name="testParse2" classname="JaCamoProjectTest" time="0.061"/>
+  <system-out><![CDATA[/*
+    JaCaMo Project
+
+    -- created on June 12, 2021
+*/
+
+mas test_inst {
+
+   workspace w1 {
+
+   }
+
+   workspace w5 {
+
+   }
+
+   institution i1 : x.sai {
+      workspaces: w1, w5
+   }
+
+   organisation o1 : o1.xml {
+
+
+
+   }
+
+   class-path: lib
+   asl-path:   file:.
+               file:src/agt
+               file:src/agt/inc
+}
+/*
+    JaCaMo Project
+
+    -- created on June 12, 2021
+*/
+
+mas test_1 {
+
+   agent bob {
+      instances: 3
+      beliefs: product("banana","this is a condition",15000)
+               rft(gui)
+      goals:  start
+              go(home)
+
+      // join: o1, w1, w5
+      // focus: w1.mycounter, w5.counter_for_all
+      // roles: role1 in o1.myfirstgroup, role2 in o1.myfirstgroup
+   }
+
+   agent alice : file:bob.asl {
+      debug: mindinspector(file(cycle,xml,log))         // app domain argument 
+      verbose: 0         // app domain argument 
+
+      // join: o1, w1, w2, w5
+      // focus: w2.acounter, w5.counter_for_all
+      // roles: role3 in o1.g4
+   }
+
+   agent marcos : file:bob.asl {
+
+      // join: w5
+      // focus: w5.rcounter, w5.counter_for_all
+   }
+
+   agent carlos : file:bob.asl {
+
+      // join: w5
+      // focus: w5.counter_for_all
+   }
+
+   agent olivier {
+
+      // join: w2, w5
+      // focus: w2.acounter, w5.counter_for_all
+   }
+
+   workspace w1 {
+      artifact mycounter: test.Counter("a counter",10)
+      artifact c1: cartago.tools.Clock
+      agents: bob, alice
+   }
+
+   workspace w2 {
+      artifact acounter: test.Counter("another counter",100)
+      agents: alice, olivier
+   }
+
+   workspace w5 {
+      artifact rcounter: test.Counter("remote counter",100)
+      artifact counter_for_all: test.Counter("universal counter",100)
+      agents: bob, alice, marcos, carlos, olivier
+   }
+
+   organisation o1 : o1-test.xml {
+      agents: bob, alice
+      group myfirstgroup: papergr {
+         debug: inspector_gui(on)
+         responsible-for: s1         players: bob role1
+                  bob role2
+      }
+      group mysecondgroup: papergr {
+         owner: bob
+
+      group g2: at {
+
+      group g4: t2 {
+         owner: alice
+         players: alice role3
+      }
+      }
+
+      group g3: at {
+      }
+      }
+
+      scheme s1: attack {
+         debug: inspector_gui(on)
+      }
+      scheme s2: attack {
+         somepar: 45
+      }
+
+   }
+
+   class-path: bin/classes
+               ../../../bin/classes
+   asl-path:   file:../../../src/templates
+   node n10@10.1.1.17:30
+   platform:     cartago(infrastructure)
+}
+/*
+    JaCaMo Project
+
+    -- created on June 12, 2021
+*/
+
+mas tt {
+
+   agent bob {
+      instances: 3
+      beliefs: product("banana","this is a condition",15000)
+               rft(gui)
+      goals:  start
+              go(home)
+
+      // join: o1, w1, w5
+      // focus: w1.mycounter, w5.counter_for_all
+      // roles: role1 in o1.myfirstgroup, role2 in o1.myfirstgroup
+   }
+
+   agent alice : file:bob.asl {
+      debug: mindinspector(file(cycle,xml,log))         // app domain argument 
+      verbose: 0         // app domain argument 
+
+      // join: o1, w1, w2, w5
+      // focus: w2.acounter, w5.counter_for_all
+      // roles: role3 in o1.g4
+   }
+
+   agent marcos : file:bob.asl {
+
+      // join: w5
+      // focus: w5.rcounter, w5.counter_for_all
+   }
+
+   agent carlos : file:bob.asl {
+
+      // join: w5
+      // focus: w5.counter_for_all
+   }
+
+   agent olivier {
+
+      // join: w2, w5
+      // focus: w2.acounter, w5.counter_for_all
+   }
+
+   agent b : file:/t/files/x.asl {
+      instances: 5
+      ag-class: mypkg.MyAgent
+      ag-bb-class: my.bb
+      ag-arch: mypkg.Arch1
+               mypkg.Arch2
+      osarg: "the course"         // app domain argument 
+      blabla: 3         // app domain argument 
+      beliefs: product("banana","this is a condition",15000)
+               rft(gui)
+      osfile: "a/x.xml"         // app domain argument 
+      events: discard         // app domain argument 
+      goals:  start
+              go(home)
+
+      // join: anotherw, kk, ww2, yy
+      // focus: ww2.c1, kk.c2, yy.c3
+   }
+
+   agent alice {
+   }
+
+   agent jorge {
+   }
+
+   workspace w1 {
+      artifact mycounter: test.Counter("a counter",10)
+      artifact c1: cartago.tools.Clock
+      agents: bob, alice
+   }
+
+   workspace w2 {
+      artifact acounter: test.Counter("another counter",100)
+      agents: alice, olivier
+   }
+
+   workspace w5 {
+      artifact rcounter: test.Counter("remote counter",100)
+      artifact counter_for_all: test.Counter("universal counter",100)
+      agents: bob, alice, marcos, carlos, olivier
+   }
+
+   organisation o1 : o1-test.xml {
+      agents: bob, alice
+      group myfirstgroup: papergr {
+         debug: inspector_gui(on)
+         responsible-for: s1         players: bob role1
+                  bob role2
+      }
+      group mysecondgroup: papergr {
+         owner: bob
+
+      group g2: at {
+
+      group g4: t2 {
+         owner: alice
+         players: alice role3
+      }
+      }
+
+      group g3: at {
+      }
+      }
+
+      scheme s1: attack {
+         debug: inspector_gui(on)
+      }
+      scheme s2: attack {
+         somepar: 45
+      }
+
+   }
+
+   class-path: lib
+               bin/classes
+               ../../../bin/classes
+               a
+               /opt/x.jar
+               ../lib/opt/x.jar
+   asl-path:   file:.
+               file:src/agt
+               file:src/agt/inc
+               file:../../../src/templates
+               file:./a2
+               file:/opt/x2.jar
+               file:./src/agt
+   node n10@10.1.1.17:30
+   node n3@x.bb.com.it
+   platform:     centralised(pool, 4)
+                 cartago(infrastructure)
+}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,35 @@
+/*
+    inst
+    ---------------------------
+
+
+*/
+
+mas inst {
+
+    agent bob: sample_agent.asl {
+        focus: w1.a
+    }
+
+    workspace w1 {
+        artifact a: tools.Counter(10)
+    }
+
+    workspace w2 {
+        artifact b: tools.Counter(5)
+    }
+
+    institution i1 : demo.sai {
+        workspaces: w1, w2
+    }
+
+    organisation o1 : org.xml {
+        group g: group1 {
+            players: bob role1
+            responsible-for: s1
+        }
+        scheme s1: scheme1
+
+        situated: i1
+    }
+}
